@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google"; // Menggunakan Fira Code
-import "./globals.css";
 import PromptHeader from "./PromptHeader";
+import "./globals.css";
 
 // Konfigurasi Fira Code
 const firaCode = Fira_Code({
