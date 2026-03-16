@@ -44,6 +44,30 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 </code>
             );
         },
+
+        // --- STYLING UNTUK TABEL GFM ---
+        table: ({ children }) => (
+            <div className="overflow-x-auto my-6">
+                <table className="w-full text-left border-collapse border border-green-900/50">
+                    {children}
+                </table>
+            </div>
+        ),
+        thead: ({ children }) => (
+            <thead className="bg-green-950/50 text-green-400">
+                {children}
+            </thead>
+        ),
+        th: ({ children }) => (
+            <th className="border border-green-900/50 px-4 py-3 font-bold">
+                {children}
+            </th>
+        ),
+        td: ({ children }) => (
+            <td className="border border-green-900/50 px-4 py-2 text-gray-300">
+                {children}
+            </td>
+        ),
         ...components,
     };
 }

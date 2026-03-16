@@ -1,0 +1,87 @@
+---
+title: "Neovim Survival Guide"
+date: "Mar 16 19:13"
+---
+
+# 🪄 Neovim Survival Guide & Cheat Sheet
+
+**Aturan Emas:** Selalu tekan tombol **`Esc`** untuk kembali ke Mode Normal setelah selesai mengetik sesuatu. Semua _shortcut_ di bawah ini dilakukan di **Mode Normal** (kecuali disebutkan lain).
+
+## 🔄 1. Mode Dasar
+
+| Tombol / Perintah | Penjelasan                                                           |
+| ----------------- | -------------------------------------------------------------------- |
+| **`i`**           | Masuk ke **Insert Mode** (sebelum kursor) untuk mulai mengetik kode. |
+| **`I`** (Shift+i) | Masuk ke **Insert Mode** di ujung paling kiri baris.                 |
+| **`a`**           | Masuk ke **Insert Mode** tepat satu huruf _setelah_ kursor.          |
+| **`A`** (Shift+a) | Masuk ke **Insert Mode** di ujung paling kanan baris.                |
+| **`v`**           | Masuk ke **Visual Mode** (blok per huruf/kata).                      |
+| **`V`** (Shift+v) | Masuk ke **Visual Line Mode** (blok satu baris penuh).               |
+| **`Esc`**         | Kembali ke **Normal Mode** (Sangat Penting!).                        |
+
+## 🚀 2. Navigasi Kilat (Motions)
+
+_Ganti tombol panah dengan kombinasi ini agar tangan tidak pegal._
+
+| Tombol / Perintah   | Fungsi Aksi                                           |
+| ------------------- | ----------------------------------------------------- |
+| **`h` `j` `k` `l**` | Kiri, Bawah, Atas, Kanan.                             |
+| **`w`**             | Lompat maju ke awal kata selanjutnya (_Word_).        |
+| **`b`**             | Lompat mundur ke kata sebelumnya (_Back_).            |
+| **`0`** (Nol)       | Pindah kursor mentok ke ujung paling **kiri** baris.  |
+| **`$`**             | Pindah kursor mentok ke ujung paling **kanan** baris. |
+| **`gg`**            | Terbang langsung ke baris **paling atas** dokumen.    |
+| **`G`** (Shift+g)   | Terjun langsung ke baris **paling bawah** dokumen.    |
+| **`Ctrl + d`**      | _Scroll_ layar ke bawah setengah halaman (_Down_).    |
+| **`Ctrl + u`**      | _Scroll_ layar ke atas setengah halaman (_Up_).       |
+
+## ⚔️ 3. Aksi Cepat (Operators)
+
+| Tombol / Perintah | Fungsi Aksi                                                    |
+| ----------------- | -------------------------------------------------------------- |
+| **`dd`**          | Hapus (_Cut_) satu baris penuh.                                |
+| **`yy`**          | Salin (_Copy/Yank_) satu baris penuh.                          |
+| **`p`**           | Tempel (_Paste_) di bawah kursor.                              |
+| **`u`**           | Batal (_Undo_) perubahan terakhir.                             |
+| **`Ctrl + r`**    | Mengulang yang dibatalkan (_Redo_).                            |
+| **`x`**           | Hapus 1 huruf tepat di kotak kursor (seperti tombol _Delete_). |
+| **`> >`**         | Geser indentasi baris ke kanan.                                |
+| **`< <`**         | Geser indentasi baris ke kiri.                                 |
+
+## ✨ 4. Sihir Neovim (Aksi + Target)
+
+_Rumus sakti: Verb (Aksi) + Noun (Target)_
+
+| Tombol / Perintah | Fungsi Aksi (Sihir)                                                                    |
+| ----------------- | -------------------------------------------------------------------------------------- |
+| **`ciw`**         | _Change In Word_: Hapus satu kata di kursor & langsung masuk Mode Insert.              |
+| **`diw`**         | _Delete In Word_: Hapus satu kata di kursor, tetap di Mode Normal.                     |
+| **`cit`**         | _Change In Tag_: Hapus isi di dalam tag HTML (misal `<p>...</p>`) & masuk Mode Insert. |
+| **`dit`**         | _Delete In Tag_: Hapus isi di dalam tag HTML, tetap di Mode Normal.                    |
+| **`ci"`**         | _Change In Quotes_: Hapus teks di dalam tanda kutip ganda `"..."` & masuk Mode Insert. |
+
+## 🛠️ 5. Perintah Terminal (Command-Line Mode)
+
+_Ketik `:` (titik dua) dari Mode Normal untuk memunculkan kolom perintah di bawah layar._
+
+| Tombol / Perintah     | Fungsi Aksi                                                                |
+| --------------------- | -------------------------------------------------------------------------- |
+| **`:w`**              | Simpan file (_Write_).                                                     |
+| **`:q`**              | Keluar dari Neovim (_Quit_).                                               |
+| **`:wq`**             | Simpan file lalu langsung keluar.                                          |
+| **`:q!`**             | Keluar paksa **tanpa menyimpan** perubahan.                                |
+| **`:%s/lama/baru/g`** | Fitur sakti: Cari kata "lama", ganti semua jadi "baru" di seluruh dokumen. |
+
+## 🔍 6. Pencarian (Search)
+
+| Tombol / Perintah | Fungsi Aksi                                                  |
+| ----------------- | ------------------------------------------------------------ |
+| **`/kata`**       | Cari "kata" ke arah bawah file. Tekan `Enter` untuk mencari. |
+| **`n`**           | Lompat ke hasil pencarian selanjutnya (_Next_).              |
+| **`N`** (Shift+n) | Lompat mundur ke hasil pencarian sebelumnya.                 |
+
+## 🧙‍♂️ Trik Bonus
+
+- **`gg=G`** : Jurus sapu jagat untuk merapikan indentasi (spasi/tab) seluruh kode dalam satu dokumen secara otomatis!
+
+---
