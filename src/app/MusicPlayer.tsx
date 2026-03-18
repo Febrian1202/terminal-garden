@@ -5,8 +5,9 @@ import { useRef, useState, useEffect } from "react";
 // 1. DAFTAR PLAYLIST ABANG
 const playlist = [
     { title: "Montagem Unknown", src: "/music/phonk.mp3" },
-    { title: "Cyberpunk City", src: "/music/cyberpunk.mp3" },
-    { title: "Midnight Lofi", src: "/music/lofi.mp3" },
+    { title: "Montagem Alquimia", src: "/music/MONTAGEM ALQUIMIA.mp3" },
+    { title: "Montagem Ladrao", src: "/music/MONTAGEM LADRAO Slowed.mp3" },
+    { title: "Sempero", src: "/music/SEMPERO.mp3" },
 ];
 
 export default function MusicPlayer() {
