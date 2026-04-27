@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev -a": "next dev --webpack",
     "build": "next build",
+    "build -a": "next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
@@ -24,6 +26,7 @@
     "shiki": "^3.23.0"
   },
   "devDependencies": {
+    "@next/swc-wasm-nodejs": "^16.1.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

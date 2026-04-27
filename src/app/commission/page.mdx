@@ -1,0 +1,69 @@
+---
+title: "Commission Tracker"
+date: "April 28 03:12"
+---
+
+
+Sip, penyesuaian yang sangat masuk akal. **MariaDB** adalah pilihan relasional yang tangguh dan sangat umum digunakan, sementara **NPM** adalah standar absolut di ekosistem Node.js.
+Sebagai catatan teknis untuk Drizzle ORM: karena MariaDB merupakan *fork* dari MySQL, Anda akan menggunakan *driver* dan dialek MySQL (mysql2 dan drizzle-orm/mysql-core) di dalam konfigurasi Drizzle nantinya. Semuanya dijamin kompatibel seratus persen.
+Berikut adalah versi *roadmap* yang sudah diperbarui dengan MariaDB dan NPM:
+# 📋 Project Roadmap: Commission Tracker API
+## 🛠️ 1. Tech Stack & Tools
+ * **Runtime:** Node.js
+ * **Framework:** Express.js
+ * **Language:** TypeScript
+ * **ORM:** Drizzle ORM (Type-safe, SQL-like syntax)
+ * **Database:** MariaDB (Local menggunakan XAMPP/Laragon atau Docker)
+ * **Validation:** Zod
+ * **Package Manager:** npm (Node Package Manager)
+ * **API Client:** Bruno / Thunder Client (Ekstensi VS Code/Zed) / Postman
+## 🗺️ 2. High-Level Workflow
+### Phase 1: Setup & Initialization (Infrastruktur Dasar)
+Fase ini fokus membangun pondasi proyek dan mengonfigurasi TypeScript serta ekosistem NPM.
+ * [ ] Inisialisasi proyek (npm init -y).
+ * [ ] Instalasi *dependencies* utama (npm install express drizzle-orm mysql2 dotenv).
+ * [ ] Instalasi *devDependencies* (npm install -D typescript @types/node @types/express tsx drizzle-kit).
+ * [ ] Setup tsconfig.json (Gunakan npx tsc --init dan aktifkan *strict mode*).
+ * [ ] Setup drizzle.config.ts untuk memberitahu Drizzle dialek yang digunakan (MySQL) dan letak skema database Anda.
+ * [ ] Buat *entry point* dasar (src/server.ts) dengan *endpoint* *health check* (GET /ping).
+### Phase 2: Database Schema & Migration (Drizzle)
+Mendefinisikan bentuk data menggunakan dialek MySQL-core dari Drizzle.
+ * [ ] Buat file skema src/db/schema.ts.
+ * [ ] Definisikan tabel commissions menggunakan import dari drizzle-orm/mysql-core:
+   * id (Varchar/UUID atau Serial/Auto Increment)
+   * clientName (Varchar)
+   * projectType (Enum: *Illustration, Live2D Rigging, Character Cutting, dll.*)
+   * price (Int/Decimal)
+   * deadline (Timestamp/Date)
+   * status (Enum: *Pending, In Progress, Completed, Cancelled*)
+   * createdAt & updatedAt (Timestamp)
+ * [ ] Generate file migrasi menggunakan Drizzle Kit (npx drizzle-kit generate:mysql).
+ * [ ] Terapkan migrasi langsung ke database MariaDB Anda (npx drizzle-kit push:mysql).
+### Phase 3: Arsitektur Folder & Drizzle Instance
+Menyiapkan struktur untuk memisahkan *logic* agar tidak menumpuk di satu file.
+ * [ ] Setup koneksi MariaDB (Inisialisasi mysql2 *pool* dan *Drizzle client* di src/db/index.ts).
+ * [ ] Buat struktur folder:
+   * /routes (Daftar endpoint API)
+   * /controllers (Logika *request/response*)
+   * /middlewares (Validasi dan *error handling*)
+### Phase 4: Validasi Payload (Zod)
+Memastikan data dari klien (seperti nominal harga dan teks status) sudah valid sebelum masuk ke MariaDB.
+ * [ ] Instalasi Zod (npm install zod drizzle-zod).
+ * [ ] Buat skema validasi Zod yang di-generate langsung dari skema Drizzle.
+ * [ ] Buat *middleware* Express yang mencegat *request* jika tipe data salah (misal: mengirim string di kolom *price*).
+### Phase 5: Core Endpoints Implementation (Controllers)
+Menulis logika utama untuk CRUD komisi Anda.
+ * [ ] **POST /commissions** -> Menyimpan pesanan komisi baru.
+ * [ ] **GET /commissions** -> Mengambil semua daftar komisi.
+ * [ ] **PATCH /commissions/:id** -> Mengupdate progres pekerjaan (misal: mengubah status dari *In Progress* ke *Completed*).
+ * [ ] **DELETE /commissions/:id** -> Menghapus data komisi.
+### Phase 6: The "Analytics" Feature (Monthly Stats)
+Membangun *endpoint* khusus untuk mencatat performa bulanan.
+ * [ ] **GET /commissions/stats?month=MM&year=YYYY** -> Endpoint rekapitulasi.
+ * [ ] Tulis *query* Drizzle untuk memfilter data berdasarkan parameter *month* dan *year*.
+ * [ ] Gunakan fungsi agregasi database MariaDB via Drizzle (seperti sum(price)) untuk mendapatkan estimasi total pendapatan bulan tersebut tanpa harus melooping array di Node.js.
+### Phase 7: Finishing & Error Handling
+Tahap akhir untuk merapikan *behaviour* API.
+ * [ ] Buat *Global Error Handler* di Express agar error MariaDB (misal: duplikasi ID atau koneksi database mati) direturn sebagai format JSON yang rapi (Status 400 atau 500).
+ * [ ] Tambahkan konfigurasi CORS (npm install cors) agar API siap dihubungkan dengan antarmuka web ke depannya.
+Dengan menggunakan NPM, Anda akan banyak bermain dengan perintah npx (Node Package Execute) saat menjalankan *command-line tools* dari Drizzle.
